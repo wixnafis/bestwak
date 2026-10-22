@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bestwak - landing page</title>
+<meta name="description" content="Bestwak landing page: a precise, calm product page built from the kit tokens, light and dark." />
+<link rel="stylesheet" href="../brandkit-demo/theme.css" />
+<style>
+  *{box-sizing:border-box;margin:0}
+  html{color-scheme:light}
+  :root[data-theme="dark"]{color-scheme:dark}
+  body{font-family:var(--font-sans);background:var(--color-surface-page);color:var(--color-text-primary);
+    line-height:var(--leading-normal);-webkit-font-smoothing:antialiased}
+  a{color:var(--color-text-link)}
+  .ico{inline-size:1.25rem;block-size:1.25rem;flex:none;stroke-width:1.75}
+  .wrap{inline-size:100%;max-inline-size:72rem;margin-inline:auto;padding-inline:var(--space-4)}
+  @media (min-width:40rem){.wrap{padding-inline:var(--space-8)}}
+
+  /* ---------- header ---------- */
+  header{border-block-end:1px solid var(--color-border-default);background:var(--color-surface-card)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);min-block-size:4rem}
+  .brand{display:flex;align-items:center;gap:var(--space-3);font-weight:700;font-size:var(--text-lg);
+    letter-spacing:-0.02em;text-decoration:none;color:var(--color-text-primary);border-radius:var(--radius-button)}
+  .brand .mark{display:grid;place-items:center;inline-size:2rem;block-size:2rem;border-radius:var(--radius-sm);
+    background:var(--color-action-primary);color:var(--color-text-on-action)}
+  .brand .mark svg{inline-size:1rem;block-size:1rem}
+  nav{display:none;gap:var(--space-1)}
+  @media (min-width:48rem){nav{display:flex}}
+  nav a{display:flex;align-items:center;min-block-size:2.75rem;padding-inline:var(--space-3);border-radius:var(--radius-button);
+    color:var(--color-text-secondary);text-decoration:none;font-size:var(--text-sm);font-weight:500;
+    transition:background var(--transition-micro),color var(--transition-micro)}
+  nav a:hover{background:var(--color-surface-raised);color:var(--color-text-primary)}
+  .actions{display:flex;align-items:center;gap:var(--space-2)}
+
+  /* ---------- controls ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);min-block-size:var(--size-control-md);
+    padding-inline:var(--space-5);border-radius:var(--radius-button);border:1px solid transparent;
+    font:600 var(--text-sm)/1 var(--font-sans);text-decoration:none;cursor:pointer;
+    transition:background var(--transition-micro),transform var(--transition-micro)}
+  .btn:focus-visible,.brand:focus-visible,nav a:focus-visible,.iconbtn:focus-visible,summary:focus-visible,.foot a:focus-visible{outline:none;box-shadow:var(--shadow-focus-ring)}
+  .btn-primary{background:var(--color-action-primary);color:var(--color-text-on-action)}
+  .btn-primary:hover{background:var(--color-action-primary-hover)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-ghost{background:transparent;color:var(--color-text-primary);border-color:var(--color-border-strong)}
+  .btn-ghost:hover{background:var(--color-surface-raised)}
+  .btn-ghost:active{transform:translateY(1px)}
+  .btn-lg{min-block-size:var(--size-control-lg);padding-inline:var(--space-6);font-size:var(--text-base)}
+  .iconbtn{display:grid;place-items:center;inline-size:var(--size-control-md);block-size:var(--size-control-md);
+    border:1px solid var(--color-border-strong);border-radius:var(--radius-button);background:transparent;
+    color:var(--color-text-primary);cursor:pointer;transition:background var(--transition-micro)}
+  .iconbtn:hover{background:var(--color-surface-raised)}
+  .iconbtn .moon{display:none}
+  :root[data-theme="dark"] .iconbtn .moon{display:block}
+  :root[data-theme="dark"] .iconbtn .sun{display:none}
+  .hide-sm{display:none}
+  @media (min-width:40rem){.hide-sm{display:inline-flex}}
+
+  /* ---------- hero: asymmetric, type leads ---------- */
+  .hero{display:grid;gap:var(--space-12);padding-block:var(--space-16) var(--space-20)}
+  @media (min-width:60rem){.hero{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end;padding-block:var(--space-24)}}
+  .eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-1) var(--space-3);
+    border-radius:var(--radius-pill);background:var(--color-surface-brand);color:var(--color-text-primary);
+    font-size:var(--text-xs);font-weight:600}
+  h1{font-size:var(--text-4xl);line-height:var(--leading-tight);letter-spacing:-0.035em;max-inline-size:18ch;
+    margin-block:var(--space-5) var(--space-5)}
+  @media (min-width:40rem){h1{font-size:var(--text-6xl)}}
+  .lede{font-size:var(--text-lg);color:var(--color-text-secondary);max-inline-size:44ch}
+  .cta{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-block-start:var(--space-8)}
+  .note{margin-block-start:var(--space-4);font-size:var(--text-sm);color:var(--color-text-secondary)}
+
+  .panel{border:1px solid var(--color-border-default);border-radius:var(--radius-lg);background:var(--color-surface-card);
+    padding:var(--space-6);box-shadow:var(--shadow-md);display:grid;gap:var(--space-5)}
+  .panel .row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);
+    padding-block-end:var(--space-4);border-block-end:1px solid var(--color-border-default);font-size:var(--text-sm)}
+  .panel .row:last-child{border:0;padding:0}
+  .panel .row span{color:var(--color-text-secondary)}
+  .panel .row strong{font-weight:600}
+  .panel .big{font-size:var(--text-5xl);font-weight:700;letter-spacing:-0.04em;line-height:1}
+  .ok{display:inline-flex;align-items:center;gap:var(--space-1);color:var(--color-feedback-success);font-weight:600}
+
+  /* ---------- sections ---------- */
+  section{padding-block:var(--space-16)}
+  h2{font-size:var(--text-3xl);line-height:var(--leading-snug);letter-spacing:-0.025em;max-inline-size:22ch}
+  @media (min-width:40rem){h2{font-size:var(--text-4xl)}}
+  .sec-sub{margin-block-start:var(--space-3);color:var(--color-text-secondary);max-inline-size:52ch}
+
+  /* features: one lead, two supporting, deliberately unequal */
+  .feat{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);margin-block-start:var(--space-10)}
+  @media (min-width:60rem){.feat{grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-template-rows:auto auto}
+    .feat .lead{grid-row:1 / span 2}}
+  .card{border:1px solid var(--color-border-default);border-radius:var(--radius-card);background:var(--color-surface-card);
+    padding:var(--space-6);display:grid;gap:var(--space-3);align-content:start;min-inline-size:0;overflow-wrap:break-word;transition:box-shadow var(--transition-micro)}
+  .card:hover{box-shadow:var(--shadow-sm)}
+  .card .ico-wrap{display:grid;place-items:center;inline-size:2.5rem;block-size:2.5rem;border-radius:var(--radius-button);
+    background:var(--color-surface-brand);color:var(--color-text-primary)}
+  .card h3{font-size:var(--text-xl);letter-spacing:-0.015em}
+  .card p{color:var(--color-text-secondary)}
+  .lead{padding:var(--space-6);background:var(--color-surface-brand);border-color:transparent}
+  .lead h3{font-size:var(--text-3xl);letter-spacing:-0.025em;max-inline-size:16ch}
+  .lead p{color:var(--color-text-primary);max-inline-size:46ch}
+  .lead .ico-wrap{background:var(--color-action-primary);color:var(--color-text-on-action)}
+
+  /* steps: single column band, no cards */
+  .band{background:var(--color-surface-inverse);color:var(--color-text-inverse)}
+  .band .sec-sub{color:var(--color-text-inverse);opacity:.85}
+  .steps{list-style:none;padding:0;margin-block-start:var(--space-10);display:grid;gap:0;max-inline-size:44rem}
+  .steps li{display:grid;grid-template-columns:3rem minmax(0,1fr);gap:var(--space-4);padding-block:var(--space-5);
+    border-block-start:1px solid var(--color-border-strong)}
+  .steps .n{font-size:var(--text-2xl);font-weight:700;letter-spacing:-0.03em}
+  .steps strong{display:block;font-size:var(--text-lg);margin-block-end:var(--space-1)}
+  .steps span.d{opacity:.85}
+
+  /* faq */
+  .faq{margin-block-start:var(--space-8);max-inline-size:48rem;border-block-start:1px solid var(--color-border-default)}
+  details{border-block-end:1px solid var(--color-border-default)}
+  summary{display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);min-block-size:3.5rem;
+    padding-block:var(--space-3);cursor:pointer;font-weight:600;list-style:none;border-radius:var(--radius-button)}
+  summary::-webkit-details-marker{display:none}
+  summary:hover{color:var(--color-text-link)}
+  summary .ico{transition:transform var(--transition-micro)}
+  details[open] summary .ico{transform:rotate(180deg)}
+  details p{padding-block-end:var(--space-5);color:var(--color-text-secondary);max-inline-size:60ch}
+
+  /* closing cta */
+  .close{display:grid;gap:var(--space-6);justify-items:start;padding:var(--space-8);border-radius:var(--radius-lg);
+    border:1px solid var(--color-border-default);background:var(--color-surface-card)}
+  @media (min-width:40rem){.close{padding:var(--space-12)}}
+
+  .foot{border-block-start:1px solid var(--color-border-default);padding-block:var(--space-8);font-size:var(--text-sm);
+    color:var(--color-text-secondary)}
+  .foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-4)}
+  .foot ul{list-style:none;padding:0;display:flex;gap:var(--space-5);flex-wrap:wrap}
+  .foot a{color:var(--color-text-secondary);border-radius:var(--radius-sm)}
+  .foot a:hover{color:var(--color-text-primary)}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Bestwak home">
+      <span class="mark" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+      Bestwak
+    </a>
+    <nav aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="actions">
+      <button class="iconbtn" id="theme" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="ico sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="ico moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+      <a class="btn btn-primary hide-sm" href="#start">Get started</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <span class="eyebrow">Now open to early users</span>
+      <h1>The best way to get it done.</h1>
+      <p class="lede">Bestwak keeps your work in one calm place, so you spend your time finishing things instead of finding them.</p>
+      <div class="cta">
+        <a class="btn btn-primary btn-lg" href="#start">Get started free</a>
+        <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
+      </div>
+      <p class="note">No card needed. Cancel any time.</p>
+    </div>
+    <aside class="panel" aria-label="Example summary">
+      <div class="row"><span>Open this week</span><strong>12 tasks</strong></div>
+      <div>
+        <p class="big">9 of 12</p>
+        <p class="note">finished by Thursday</p>
+      </div>
+      <div class="row"><span>Status</span>
+        <span class="ok"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>On track</span>
+      </div>
+    </aside>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <h2>Built to stay out of your way</h2>
+      <p class="sec-sub">Three things Bestwak does well, in order of how much they matter.</p>
+      <div class="feat">
+        <article class="card lead">
+          <span class="ico-wrap" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></span>
+          <h3>Everything in one view</h3>
+          <p>See what is due, what is blocked and what is done on a single screen. No tabs to hunt through and nothing hidden behind a menu.</p>
+        </article>
+        <article class="card">
+          <span class="ico-wrap" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <h3>Fast by default</h3>
+          <p>Pages open instantly and actions confirm as you make them.</p>
+        </article>
+        <article class="card">
+          <span class="ico-wrap" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg></span>
+          <h3>Private and accessible</h3>
+          <p>Your data stays yours, and every control works with a keyboard and a screen reader.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="band">
+    <div class="wrap">
+      <h2>Up and running in three steps</h2>
+      <p class="sec-sub">Most people finish setup before their coffee cools.</p>
+      <ol class="steps">
+        <li><span class="n" aria-hidden="true">1</span><div><strong>Create your account</strong><span class="d">An email address is all it takes.</span></div></li>
+        <li><span class="n" aria-hidden="true">2</span><div><strong>Add what you are working on</strong><span class="d">Type it in or paste a list. Bestwak sorts it for you.</span></div></li>
+        <li><span class="n" aria-hidden="true">3</span><div><strong>Work through the day</strong><span class="d">Check things off and watch the week fill in.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <h2>Questions, answered</h2>
+      <div class="faq">
+        <details>
+          <summary>Is Bestwak free?<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>You can start free with no card. Paid plans will be announced before they apply to you.</p>
+        </details>
+        <details>
+          <summary>Can I use it on my phone?<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Yes. The layout is designed for small screens first and scales up from there.</p>
+        </details>
+        <details>
+          <summary>What happens to my data if I leave?<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>You can export everything at any time, and deleting your account removes it.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="start">
+    <div class="wrap">
+      <div class="close">
+        <h2>Start with one small thing today</h2>
+        <p class="sec-sub">Create an account and add your first task in under a minute.</p>
+        <a class="btn btn-primary btn-lg" href="#top">Get started free</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Bestwak, 2026</p>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('theme');
+    function set(t){
+      root.setAttribute('data-theme',t);
+      btn.setAttribute('aria-pressed',String(t==='dark'));
+      btn.setAttribute('aria-label',t==='dark'?'Switch to light theme':'Switch to dark theme');
+    }
+    try{var s=localStorage.getItem('bw-theme');if(s)set(s);else if(window.matchMedia('(prefers-color-scheme: dark)').matches)set('dark');}catch(e){}
+    btn.addEventListener('click',function(){
+      var t=root.getAttribute('data-theme')==='dark'?'light':'dark';
+      set(t);try{localStorage.setItem('bw-theme',t);}catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
